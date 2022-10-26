@@ -73,7 +73,6 @@ startBtn.addEventListener("click", () => {
       body.classList.add("is-activ");
       title.textContent = "До бавовни залишилось:";
       timerHtml.style.color = "white";
-      timerHtml.classList.add("big");
       back.style.color = "white";
 
       if (countdown <= 20000) {
