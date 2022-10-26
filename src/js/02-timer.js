@@ -74,11 +74,11 @@ startBtn.addEventListener("click", () => {
       title.textContent = "До бавовни залишилось:";
       timerHtml.style.color = "white";
       timerHtml.classList.add("big");
+      back.style.color = "white";
 
       if (countdown <= 20000) {
         timerHtml.style.color = "tomato";
         paliy.classList.add("is-hot");
-        back.style.color = "white";
       }
     } else {
       clearInterval(timer);
@@ -86,6 +86,7 @@ startBtn.addEventListener("click", () => {
       Notiflix.Notify.success("Ну, мені нравиця як воно горить", {timeout: 3000,});
       Notiflix.Notify.success("Ну, люді в шокє, глаза аж вилазять у них!", {timeout: 6000,});
       Notiflix.Notify.success("А мені це по-приколу: дивиться, як вони бігають, суїтятсь, питаюця руками потушить, а воно ж ше дужче горить.",{timeout: 12000,});
+      // paliy.classList.remove("is-hot");
     }
   }, 1000);
 });

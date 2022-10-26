@@ -26,6 +26,9 @@ img {
   background-image: url(../img/paliy.webp);
   background-repeat: no-repeat;
   background-size: cover;
+  position: static;
+  bottom: 0;
+  right: 0;
 }
 .intro {
   font-size: 45px;
@@ -39,7 +42,4 @@ img {
 .paliy {
   width: 600px;
   height: 600px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
 }
