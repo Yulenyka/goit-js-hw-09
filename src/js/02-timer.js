@@ -16,6 +16,8 @@ const hours = document.querySelector("span[data-hours]");
 const minutes = document.querySelector("span[data-minutes]");
 const seconds = document.querySelector("span[data-seconds]");
 
+let timer = null;
+
 startBtn.disabled = true;
 timerHtml.style.color = "black";
 
@@ -60,32 +62,43 @@ function addLeadingZero(value) {
 }
 
 startBtn.addEventListener("click", () => {
-  let timer = setInterval(() => {
-    let countdown = new Date(dateTime.value) - new Date();
     startBtn.disabled = true;
-    if (countdown >= 0) {
-      let timeObject = convertMs(countdown);
-      days.textContent = addLeadingZero(timeObject.days);
-      hours.textContent = addLeadingZero(timeObject.hours);
-      minutes.textContent = addLeadingZero(timeObject.minutes);
-      seconds.textContent = addLeadingZero(timeObject.seconds);
-
-      body.classList.add("is-activ");
-      title.textContent = "До бавовни залишилось:";
-      timerHtml.style.color = "white";
-      back.style.color = "white";
-
-      if (countdown <= 20000) {
-        timerHtml.style.color = "tomato";
-        paliy.classList.add("is-hot");
-      }
-    } else {
-      clearInterval(timer);
-      timerHtml.style.color = "white";
-      Notiflix.Notify.success("Ну, мені нравиця як воно горить", {timeout: 3000,});
-      Notiflix.Notify.success("Ну, люді в шокє, глаза аж вилазять у них!", {timeout: 6000,});
-      Notiflix.Notify.success("А мені це по-приколу: дивиться, як вони бігають, суїтятсь, питаюця руками потушить, а воно ж ше дужче горить.",{timeout: 12000,});
-      // paliy.classList.remove("is-hot");
-    }
-  }, 1000);
+   goTimer();
+  timer = setInterval(goTimer, 1000);
 });
+
+function goTimer() {
+  let countdown = new Date(dateTime.value) - new Date();
+
+  if (countdown >= 0) {
+    let timeObject = convertMs(countdown);
+    days.textContent = addLeadingZero(timeObject.days);
+    hours.textContent = addLeadingZero(timeObject.hours);
+    minutes.textContent = addLeadingZero(timeObject.minutes);
+    seconds.textContent = addLeadingZero(timeObject.seconds);
+
+    body.classList.add("is-activ");
+    title.textContent = "До бавовни залишилось:";
+    timerHtml.style.color = "white";
+    back.style.color = "white";
+
+    if (countdown <= 20000) {
+      timerHtml.style.color = "tomato";
+      paliy.classList.add("is-hot");
+    }
+  } else {
+    clearInterval(timer);
+    timerHtml.style.color = "white";
+    Notiflix.Notify.success("Ну, мені нравиця як воно горить", {
+      timeout: 3000,
+    });
+    Notiflix.Notify.success("Ну, люді в шокє, глаза аж вилазять у них!", {
+      timeout: 6000,
+    });
+    Notiflix.Notify.success(
+      "А мені це по-приколу: дивиться, як вони бігають, суїтятсь, питаюця руками потушить, а воно ж ше дужче горить.",
+      { timeout: 12000 }
+    );
+    // paliy.classList.remove("is-hot");
+  }
+}

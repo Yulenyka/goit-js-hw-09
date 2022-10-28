@@ -6,19 +6,18 @@ let timerId = null;
 btnStart.addEventListener("click", () => {
   btnStart.disabled = true;
   btnStop.disabled = false;
-
-  timerId = setInterval(() => {
-    document.body.style.background = getRandomHexColor();
-  }, 1000);
+  changeBackgroundColor();
+  timerId = setInterval(changeBackgroundColor, 1000);
 });
-
-btnStop.addEventListener("click", () => {
+btnStop.addEventListener("click", (onClick) => {
   btnStart.disabled = false;
   btnStop.disabled = true;
-
   clearInterval(timerId);
 });
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
+function changeBackgroundColor() {
+  document.body.style.background = getRandomHexColor();
 }
